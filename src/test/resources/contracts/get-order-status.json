@@ -1,0 +1,36 @@
+{
+  "provider": {
+    "name": "provider"
+  },
+  "consumer": {
+    "name": "consumer"
+  },
+
+  "interactions":[
+    {
+      "description" : "Get Order Status",
+      "request":{
+        "headers": {
+          "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+          "Accept": "*/*"
+        },
+        "method": "get",
+        "path": "/order/1"
+      },
+      "response": {
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "status": 200,
+        "body": {
+          "status": "READY"
+        },
+        "responseMatchingRules":{
+          "$.body.status":{
+            "regex" :"^(READY|MAKING|QUEUED|DELAYED)$"
+          }
+        }
+      }
+    }
+  ]
+}

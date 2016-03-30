@@ -1,0 +1,83 @@
+{
+  "provider": {
+    "name": "provider"
+  },
+  "consumer": {
+    "name": "consumer"
+  },
+  "interactions": [
+    {
+      "description": "Get Menu",
+      "request": {
+        "headers": {
+          "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+          "Accept": "*/*"
+        },
+        "method": "get",
+        "path": "/menu"
+      },
+      "response": {
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "status": 200,
+        "body": {
+          "coffees": [
+            {
+              "name": "long black",
+              "order_path": "/order/long-black",
+              "price": 3,
+              "caffeine_level": 8,
+              "milk_ratio": 0
+            },
+            {
+              "name": "flat white",
+              "order_path": "/order/flat-white",
+              "price": 3.5,
+              "caffeine_level": 5,
+              "milk_ratio": 2
+            },
+            {
+              "name": "latte",
+              "order_path": "/order/latte",
+              "price": 3.5,
+              "caffeine_level": 5,
+              "milk_ratio": 3
+            },
+            {
+              "name": "espresso",
+              "order_path": "/order/espresso",
+              "price": 2,
+              "caffeine_level": 10,
+              "milk_ratio": 0
+            },
+            {
+              "name": "machiato",
+              "order_path": " /order/machiato",
+              "price": 2.5,
+              "caffeine_level": 10,
+              "milk_ratio": 0.5
+            }
+          ]
+        },
+        "responseMatchingRules": {
+          "$.body.coffees[*].name": {
+            "match": "type"
+          },
+          "$.body.coffees[*].order_path": {
+            "match": "type"
+          },
+          "$.body.coffees[*].price": {
+            "match": "type"
+          },
+          "$.body.coffees[*].caffeine_level": {
+            "match": "type"
+          },
+          "$.body.coffees[*].milk_ratio": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "provider": {
+    "name": "provider"
+  },
+  "consumer": {
+    "name": "consumer"
+  },
+
+  "interactions":[
+    {
+      "description" : "Order Coffee",
+      "request":{
+        "headers": {
+          "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+          "Accept": "*/*"
+        },
+        "method": "post",
+        "path": "/order/long-black",
+        "body":{
+          "size" :"small",
+          "extras" : ["skim-milk","sugar"],
+          "pickup_time":"2017-03-31T08:15:30"
+        }
+      },
+      "response": {
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "status": 201,
+        "body": {
+          "order": "/order/123",
+          "wait_time": "5"
+        },
+        "responseMatchingRules":{
+          "$.body.order":{
+            "match" :"type"
+          },
+          "$.body.wait_time":{
+            "regex" :"\\d*"
+          }
+
+        }
+      }
+    }
+  ]
+}
